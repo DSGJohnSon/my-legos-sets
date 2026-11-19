@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ma collection LEGO</title>
+  <meta name="description" content="Tous les sets LEGO® que je possède déjà : vérifie ici avant de m'offrir un cadeau.">
+  <meta name="theme-color" content="#06164a">
+  <meta property="og:title" content="Ma collection LEGO®">
+  <meta property="og:description" content="Tu veux m'offrir un set ? Vérifie ici que je ne l'ai pas déjà.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='12' width='28' height='16' rx='3' fill='%23e3241b'/%3E%3Crect x='6' y='6' width='8' height='8' rx='2' fill='%23e3241b'/%3E%3Crect x='18' y='6' width='8' height='8' rx='2' fill='%23e3241b'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <header class="hero">
+    <div class="bricks" aria-hidden="true" id="floating-bricks"></div>
+
+    <nav class="nav">
+      <a href="#" class="logo" aria-label="Accueil">
+        <span class="logo-word">BR<span class="logo-i"><i></i></span>QUES</span>
+        <span class="logo-sub">de <span data-owner>Fred</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#collection" class="pill pill-outline">La collection</a>
+        <a href="#comment" class="pill pill-light">Comment ça marche</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <p class="eyebrow">🎁 Idée cadeau ?</p>
+      <h1>Tu veux m'offrir un LEGO<sup>®</sup>&nbsp;?</h1>
+      <p class="lead">Vérifie ici que je ne l'ai pas déjà. Tape le numéro inscrit sur la boîte, ou simplement son nom.</p>
+
+      <form class="search" role="search" onsubmit="return false">
+        <label for="q" class="sr-only">Numéro ou nom du set</label>
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <input id="q" type="search" inputmode="search" autocomplete="off" placeholder="Ex. 10318 ou « Concorde »">
+        <button type="button" class="search-clear" id="clear" aria-label="Effacer" hidden>×</button>
+      </form>
+
+      <div class="verdict" id="verdict" aria-live="polite"></div>
+    </div>
+
+    <svg class="hero-edge" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 120 V78 L180 66 V54 h28 v-8 h22 v8 h28 v-8 h22 v8 h12 V62 L520 44 V30 h30 v-10 h24 v10 h30 v-10 h24 v10 h16 V40 L860 30 h20 v-8 h22 v8 h20 L1440 0 V120 Z" fill="var(--yellow)"/>
+    </svg>
+  </header>
+
+  <!-- ═══════════ BANDE STATS ═══════════ -->
+  <section class="stats-band">
+    <div class="stats">
+      <div class="stat"><strong id="stat-sets">–</strong><span>sets</span></div>
+      <div class="stat"><strong id="stat-themes">–</strong><span>thèmes</span></div>
+      <p class="stat-tip">💡 Le numéro du set est écrit en gros sur la boîte, en général en haut à gauche.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ COLLECTION ═══════════ -->
+  <main class="collection" id="collection">
+    <div class="wrap">
+      <div class="collection-head">
+        <h2>La collection</h2>
+        <label class="sort">
+          <span>Trier par</span>
+          <select id="sort">
+            <option value="theme">Thème</option>
+            <option value="num">Numéro</option>
+            <option value="name">Nom (A → Z)</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="chips" id="chips" role="tablist" aria-label="Filtrer par thème"></div>
+
+      <p class="result-count" id="result-count"></p>
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty" hidden>
+        <div class="empty-brick" aria-hidden="true"></div>
+        <p><strong>Aucun set ne correspond.</strong><br>S'il n'est pas dans la liste, c'est que je ne l'ai pas&nbsp;: foncez&nbsp;! 🎉</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══════════ COMMENT ÇA MARCHE ═══════════ -->
+  <section class="how" id="comment">
+    <div class="wrap">
+      <h2>Comment ça marche&nbsp;?</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-n" style="--c: var(--red)">1</span>
+          <h3>Repère un set</h3>
+          <p>En magasin ou en ligne, choisis le set qui te plaît, peu importe le prix.</p>
+        </li>
+        <li>
+          <span class="step-n" style="--c: var(--blue)">2</span>
+          <h3>Tape son numéro</h3>
+          <p>Le numéro (4 à 5 chiffres) est sur la boîte. Entre-le dans la recherche en haut de la page.</p>
+        </li>
+        <li>
+          <span class="step-n" style="--c: var(--green)">3</span>
+          <h3>Pas dans la liste&nbsp;?</h3>
+          <p>C'est que je ne l'ai pas encore. Tu peux l'offrir les yeux fermés&nbsp;!</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>Liste mise à jour le <span id="updated"></span>.</p>
+      <p class="legal">LEGO® est une marque déposée du Groupe LEGO, qui ne sponsorise ni n'approuve ce site. Images&nbsp;: Rebrickable / Brickset.</p>
+    </div>
+  </footer>
+
+  <script src="sets.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
